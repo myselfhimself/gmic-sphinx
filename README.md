@@ -53,3 +53,6 @@ You might need to add gmic-sphinx to your Python path.
 This extension is used in the following projects:
 * [gmic-py](https://github.com/dtschump/gmic-py) // [readthedocs.io documentation](https://gmic-py.readthedocs.io/en/latest/)
 * PR to add your project here :)
+
+# License
+This project is under the [CeCILL License](https://github.com/myselfhimself/gmic-sphinx/blob/master/LICENSE).
