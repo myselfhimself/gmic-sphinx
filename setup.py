@@ -21,6 +21,7 @@ setup(
     url="https://github.com/myselfhimself/gmic-sphinx",
     long_description=read("README.md"),
     packages=["gmic_sphinx"],
+    include_package_data=True,
     install_requires=["sphinx", "docutils", "gmic"],
     classifiers=[
         "Development Status :: 2 - Pre-Alpha",

@@ -1,0 +1,2 @@
+include gmic_sphinx/samples/*
+include gmic_sphinx/output/*

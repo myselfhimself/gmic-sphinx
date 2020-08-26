@@ -1,24 +1,30 @@
+import os
 import os.path
 import re
 import uuid
+import tempfile
 
 from docutils import nodes
 from docutils.parsers.rst import Directive
 
 import gmic
 
+CURRENT_SCRIPT_DIR_NAME = os.path.dirname(os.path.realpath(__file__))
 
 class GmicPic(Directive):
     required_arguments = 1
     optional_arguments = 25
     has_content = False
-    DIR_NAME = "gmic_images"
+    #OUTPUT_DIR_NAME = os.path.join(CURRENT_SCRIPT_DIR_NAME, "output")
+    OUTPUT_DIR_NAME = os.path.relpath(tempfile.mkdtemp(prefix="gmic_sphinx", dir=os.getcwd()))
+    SAMPLES_DIR_NAME = os.path.join(CURRENT_SCRIPT_DIR_NAME, "samples")
 
     def run(self):
         original_command = " ".join(self.arguments)
 
         gmic_command = self.replace_gmic_sp(original_command)
         gmic_command, output_filename = self.replace_and_get_gmic_output(gmic_command)
+        print("OUTPUT FILENAME", output_filename)
 
         print("WILL RUN", gmic_command)
         gmic.run(gmic_command)
@@ -30,7 +36,7 @@ class GmicPic(Directive):
         search = pattern.search(gmic_command)
         if search:
             sample_name = search.group(1)
-            related_sample_file = os.path.join(self.DIR_NAME, sample_name + ".png")
+            related_sample_file = os.path.join(self.SAMPLES_DIR_NAME, "sample_" + sample_name + ".png")
             gmic_command = re.sub(pattern, related_sample_file, gmic_command)
 
         return gmic_command
@@ -40,10 +46,10 @@ class GmicPic(Directive):
         search = pattern.search(gmic_command)
         if search:
             output_filename = search.group(1)
-            real_filename = os.path.join(self.DIR_NAME, output_filename)
+            real_filename = os.path.join(self.OUTPUT_DIR_NAME, output_filename)
             gmic_command = re.sub(pattern, "output " + real_filename, gmic_command)
         else:
-            real_filename = os.path.join(self.DIR_NAME, str(uuid.uuid1()) + ".png")
+            real_filename = os.path.join(self.OUTPUT_DIR_NAME, str(uuid.uuid1()) + ".png")
             gmic_command = "{} output {}".format(gmic_command, real_filename)
 
         return gmic_command, real_filename

@@ -17,7 +17,7 @@ For example:
 ```
 will yield a picture file-named `earthy.png` followed by the command as caption:
 
-![Image of gmic-library-blurred earth](https://github.com/myselfhimself/gmic-sphinx/raw/master/earthy.png)
+![Image of gmic-library-blurred earth](https://github.com/myselfhimself/gmic-sphinx/raw/master/github_images/earthy.png)
 
 sp earth blur 4 output earthy.png
 
@@ -29,7 +29,7 @@ sp earth blur 4 output earthy.png
 ```
 will yield a picture file-named with a unique id `cce2fce2-e6fc-11ea-9e0e-8cec4b8c0881.png` followed by the command as caption:
 
-![Image of gmic-library-blurred leno](https://github.com/myselfhimself/gmic-sphinx/raw/master/cce2fce2-e6fc-11ea-9e0e-8cec4b8c0881.png)
+![Image of gmic-library-blurred leno](https://github.com/myselfhimself/gmic-sphinx/raw/master/github_images/cce2fce2-e6fc-11ea-9e0e-8cec4b8c0881.png)
 
 sp leno blur 4
 
