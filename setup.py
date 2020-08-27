@@ -20,6 +20,7 @@ setup(
     keywords="sphinx extension gmic image-processing",
     url="https://github.com/myselfhimself/gmic-sphinx",
     long_description=read("README.md"),
+    long_description_content_type="text/markdown",
     packages=["gmic_sphinx"],
     include_package_data=True,
     install_requires=["sphinx", "docutils", "gmic"],
