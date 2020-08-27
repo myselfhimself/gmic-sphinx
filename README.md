@@ -67,7 +67,9 @@ cd docs; make html; firefox _build/html/index.html # Or any other web browser
 
 ## Releasing
 If you are maintainer and would like to trigger a new release for this project, you do not need any credential since they are stored as Github Secret for this project.
-You just have to Git-push a new tag, as described in this [Github Action Worfklow file](https://github.com/myselfhimself/gmic-sphinx/blob/master/.github/workflows/releasetopypiontag.yml).
+You just have:
+1. Change the version number in the `setup.py`'s `setup()` function.
+1. to Git-push a new tag, as described in this [Github Action Worfklow file](https://github.com/myselfhimself/gmic-sphinx/blob/master/.github/workflows/releasetopypiontag.yml).
 
 # License
 This project is under the [CeCILL License](https://github.com/myselfhimself/gmic-sphinx/blob/master/LICENSE).
