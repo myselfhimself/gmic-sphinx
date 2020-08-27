@@ -56,5 +56,18 @@ This extension is used in the following projects:
 * [gmic-py](https://github.com/dtschump/gmic-py) // [readthedocs.io documentation](https://gmic-py.readthedocs.io/en/latest/)
 * PR to add your project here :)
 
+## Tests
+There are no automated tests for this project for now. Here is how to test the current version manually:
+```sh
+# Optional
+pip install .
+# Compulsory
+cd docs; make html; firefox _build/html/index.html # Or any other web browser
+```
+
+## Releasing
+If you are maintainer and would like to trigger a new release for this project, you do not need any credential since they are stored as Github Secret for this project.
+You just have to Git-push a new tag, as described in this [Github Action Worfklow file](https://github.com/myselfhimself/gmic-sphinx/blob/master/.github/workflows/releasetopypiontag.yml).
+
 # License
 This project is under the [CeCILL License](https://github.com/myselfhimself/gmic-sphinx/blob/master/LICENSE).
