@@ -1,4 +1,8 @@
 name: Build and release to Pypi.org on Git tag
+# Use this to make new releases, for example for a new 0.0.2 version:
+# 1. git tag -a 0.0.2
+# 2. git push --tags
+# 3. This Github Actions jobs gets triggered
 
 # Allow running this job only for v* tag pushes
 on:
@@ -12,14 +16,14 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.6']
+        python-version: ['3.6'] # This version does not impact the generated wheel's version (ie. Python >3.x)
     steps:
       - uses: actions/checkout@v1
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: build and publish to PyPI
+      - name: build and publish to PyPI.org
         working-directory: ./
         env:
           TWINE_PASSWORD_GITHUB_SECRET: __token__
@@ -28,8 +32,8 @@ jobs:
         run: |
           python3 setup.py sdist bdist_wheel
           for a in `ls dist/*`; do twine upload $a --skip-existing --verbose; done
-      - name: upload wheelhouse as artifact
+      - name: upload result as artifact
         uses: actions/upload-artifact@v2
         with:
-          name: manylinux-gmicpy-optimized-released-wheels
-          path: wheelhouse/
+          name: wheels and sources sent to pypi.org
+          path: dist/
