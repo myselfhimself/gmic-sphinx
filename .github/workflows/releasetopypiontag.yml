@@ -1,0 +1,35 @@
+name: Build and release to Pypi.org on Git tag
+
+# Allow running this job only for v* tag pushes
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+    - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.6']
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v1
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: build and publish to PyPI
+        working-directory: ./
+        env:
+          TWINE_PASSWORD_GITHUB_SECRET: __token__
+          TWINE_PASSWORD_GITHUB_SECRET: ${{ secrets.TWINE_PASSWORD_GITHUB_SECRET }}
+          TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
+        run: |
+          python3 setup.py sdist bdist_wheel
+          for a in `ls dist/*`; do twine upload $a --skip-existing --verbose; done
+      - name: upload wheelhouse as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: manylinux-gmicpy-optimized-released-wheels
+          path: wheelhouse/

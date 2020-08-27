@@ -1,4 +1,6 @@
 # gmic-sphinx
+[![PyPI version](https://badge.fury.io/py/gmic-sphinx.svg)](https://badge.fury.io/py/gmic-sphinx)
+
 A [Sphinx](https://www.sphinx-doc.org/) extension for displaying [G'MIC](https://gmic.eu/) command results as images using the [gmic-py](https://github.com/dtschump/gmic-py) Python binding.
 
 ## Usage
