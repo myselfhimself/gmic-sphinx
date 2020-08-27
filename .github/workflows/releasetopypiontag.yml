@@ -3,6 +3,7 @@ name: Build and release to Pypi.org on Git tag
 # 1. git tag -a 0.0.2
 # 2. git push --tags
 # 3. This Github Actions jobs gets triggered
+# 4. git push origin master # keep master in sync with the new tag as well
 
 # Allow running this job only for v* tag pushes
 on:
