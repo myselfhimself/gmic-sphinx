@@ -26,12 +26,12 @@ jobs:
       - name: build and publish to PyPI.org
         working-directory: ./
         env:
-          TWINE_PASSWORD_GITHUB_SECRET: __token__
+          TWINE_PASSWORD_GITHUB_USERNAME: __token__
           TWINE_PASSWORD_GITHUB_SECRET: ${{ secrets.TWINE_PASSWORD_GITHUB_SECRET }}
           TWINE_REPOSITORY_URL: https://upload.pypi.org/legacy/
         run: |
           python3 setup.py sdist bdist_wheel
-          for a in `ls dist/*`; do twine upload $a --skip-existing --verbose; done
+          for a in `ls dist/*`; do twine upload $a --skip-existing --verbose -u $TWINE_PASSWORD_GITHUB_USERNAME -p $TWINE_PASSWORD_GITHUB_SECRET; done
       - name: upload result as artifact
         uses: actions/upload-artifact@v2
         with:
