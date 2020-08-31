@@ -13,10 +13,10 @@ CURRENT_SCRIPT_DIR_NAME = os.path.dirname(os.path.realpath(__file__))
 
 class GmicPic(Directive):
     required_arguments = 1
-    optional_arguments = 25
+    optional_arguments = 50
     has_content = False
-    #OUTPUT_DIR_NAME = os.path.join(CURRENT_SCRIPT_DIR_NAME, "output")
-    OUTPUT_DIR_NAME = os.path.relpath(tempfile.mkdtemp(prefix="gmic_sphinx", dir=os.getcwd()))
+
+    OUTPUT_DIR_NAME = os.path.relpath(tempfile.mkdtemp(prefix="gmic_sphinx"))
     SAMPLES_DIR_NAME = os.path.join(CURRENT_SCRIPT_DIR_NAME, "samples")
 
     def run(self):
@@ -24,12 +24,14 @@ class GmicPic(Directive):
 
         gmic_command = self.replace_gmic_sp(original_command)
         gmic_command, output_filename = self.replace_and_get_gmic_output(gmic_command)
-        print("OUTPUT FILENAME", output_filename)
 
-        print("WILL RUN", gmic_command)
         gmic.run(gmic_command)
-        image_node = nodes.image(uri=output_filename)
-        return [image_node, nodes.paragraph(text=original_command)]
+        figure = nodes.figure()
+        img = nodes.image(uri=output_filename)
+        caption = nodes.caption(text=original_command)
+        figure += img 
+        figure += caption
+        return [figure]
 
     def replace_gmic_sp(self, gmic_command):
         pattern = re.compile(r'sp ([a-z]+)')
