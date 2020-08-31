@@ -57,12 +57,21 @@ This extension is used in the following projects:
 * PR to add your project here :)
 
 ## Tests
-There are no automated tests for this project for now. Here is how to test the current version manually:
+Automated pytest test cases are run in the [Github Actions](https://github.com/myselfhimself/gmic-sphinx/actions) tab. You can run them yourself as well in a Python >= 3.7 environment.
+
+Install the test requirements:
 ```sh
-# Optional
+pip install dev-requirements.txt
+```
+
+Install the package locally:
+```sh
 pip install .
-# Compulsory
-cd docs; make html; firefox _build/html/index.html # Or any other web browser
+```
+
+Run the pytest test suite:
+```sh
+py.test tests/
 ```
 
 ## Releasing
