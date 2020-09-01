@@ -77,7 +77,7 @@ py.test tests/
 ## Releasing
 If you are maintainer and would like to trigger a new release for this project, you do not need any credential since they are stored as Github Secret for this project.
 You just have:
-1. Change the version number in the `setup.py`'s `setup()` function.
+1. Change the version number in `gmic_sphinx/gmicpic.py`'s `setup()` function and `gmic_sphinx/gmicpic.py`'s `setup()` function.
 1. to Git-push a new tag, as described in this [Github Action Worfklow file](https://github.com/myselfhimself/gmic-sphinx/blob/master/.github/workflows/releasetopypiontag.yml).
 
 # License

@@ -11,7 +11,7 @@ def read(fname):
 
 setup(
     name="gmic-sphinx",
-    version="0.0.3",
+    version="0.0.4",
     author="Jonathan-David Schröder",
     author_email="jonathan.schroder@gmail.com",
     description=(

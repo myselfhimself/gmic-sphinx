@@ -64,7 +64,7 @@ def setup(app):
     app.add_directive("gmicpic", GmicPic)
 
     return {
-        'version': '0.2',
+        'version': "0.0.4",
         'parallel_read_safe': True,
         'parallel_write_safe': True,
     }
